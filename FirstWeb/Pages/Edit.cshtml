@@ -1,0 +1,13 @@
+﻿@page "{id:int}"
+@model FirstWeb.Pages.EditModel
+@{
+    ViewData["Title"] = "Edit";
+}
+<h2>Edit customer - @Model.Customer.Id</h2>
+<form method="post">
+    <div asp-validation-summary="All"/>
+    <input asp-for="Customer.Id" type="hidden"/>
+        <input asp-for="Customer.Name"/>
+    <button type="submit">Save</button>
+</form>
+
