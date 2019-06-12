@@ -17,7 +17,7 @@ namespace FirstWeb.Pages
         public async Task<IActionResult> OnGetAsync(int id)
         {
             Customer = await _db.Customers.FindAsync(id);
-            if (Customer == null) RedirectToPage("Index");
+            if (Customer == null) RedirectToPage("Customers");
             return Page();
         }
 
@@ -33,7 +33,7 @@ namespace FirstWeb.Pages
             {
                 throw new Exception($"Customer - {Customer.Id} not found!", e);
             }
-            return RedirectToPage("Index");
+            return RedirectToPage("Customers");
         }
     }
 }

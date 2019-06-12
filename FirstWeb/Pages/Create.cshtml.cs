@@ -25,7 +25,7 @@ namespace FirstWeb.Pages
             _db.Customers.Add(Customer);
             Message = "Create successfull!";
             await _db.SaveChangesAsync();
-            return RedirectToPage("/Index");
+            return RedirectToPage("/Customers");
         }
     }
 }

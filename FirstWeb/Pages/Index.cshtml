@@ -3,33 +3,5 @@
 @{
     ViewData["Title"] = "Home page";
 }
-
-<form method="post">
-    @if (Model.ShowMessage)
-    {
-        <div class="alert alert-info alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span>x</span></button>
-            @Model.Message
-        </div>
-    }
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach(var Customer in Model.Customers){
-            <tr>
-                <th>@Customer.Id</th>
-                <th>@Customer.Name</th>
-                <th><a asp-page="./Edit" asp-route-Id="@Customer.Id">Edit</a>
-                <button asp-page-handler="Delete" asp-route-id="@Customer.Id" class="btn btn-xs btn-danger">Delete</button></th>
-            </tr>
-            }
-        </tbody>
-    </table>
-    <p><a asp-page="./Create" class="alert-link alert-success">Create</a></p>
-</form>
+<h2></h2>
+<a asp-page="Create" class="btn btn-primary">New Customer</a>

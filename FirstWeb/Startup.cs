@@ -41,6 +41,11 @@ namespace FirstWeb
         {
             if (env.IsDevelopment())
             {
+                using (var scope = app.ApplicationServices.CreateScope())
+                {
+                    var db = scope.ServiceProvider.GetService<AppDb>();
+                    SeedDataInto(db);
+                }
                 app.UseDeveloperExceptionPage();
             }
             else
@@ -54,6 +59,15 @@ namespace FirstWeb
             app.UseCookiePolicy();
 
             app.UseMvc();
+        }
+
+        private void SeedDataInto(AppDb dbContext)
+        {
+            dbContext.Customers.Add(new Customer { Name = "Adam Obadam" });
+            dbContext.Customers.Add(new Customer { Name = "Aga Powaga" });
+            dbContext.Customers.Add(new Customer { Name = "Stachu Brachu" });
+            dbContext.SaveChanges();
+
         }
     }
 }
