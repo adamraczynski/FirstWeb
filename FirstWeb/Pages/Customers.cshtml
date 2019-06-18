@@ -3,35 +3,46 @@
 @{
     ViewData["Title"] = "Customers";
 }
-    <form method="post">
-        @if (Model.ShowMessage)
+<h2>Customers</h2>
+@if (Model.ShowMessage)
+{
+    <div class="alert alert-info alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span>x</span></button>
+        @Model.Message
+    </div>
+}
+<form method="get">
+    <div class="form-group">
+        <div class="input-group">
+            <input type="search" class="form-control" asp-for="Name"/>
+            <span class="input-group-btn">
+                <button class="btn btn-default">
+                    <i class="glyphicon glyphicon-search"></i>
+                </button>
+            </span>
+        </div>
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var Customer in Model.Customers)
         {
-            <div class="alert alert-info alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span>x</span></button>
-                @Model.Message
-            </div>
+            <tr>
+                <th>@Customer.Id</th>
+                <th>@Customer.Name</th>
+                <th>
+                    <a asp-page="./Edit" asp-route-Id="@Customer.Id">Edit</a>
+                    <button asp-page-handler="Delete" asp-route-id="@Customer.Id" class="btn btn-xs btn-danger">Delete</button>
+                </th>
+            </tr>
         }
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var Customer in Model.Customers)
-                {
-                    <tr>
-                        <th>@Customer.Id</th>
-                        <th>@Customer.Name</th>
-                        <th>
-                            <a asp-page="./Edit" asp-route-Id="@Customer.Id">Edit</a>
-                            <button asp-page-handler="Delete" asp-route-id="@Customer.Id" class="btn btn-xs btn-danger">Delete</button>
-                        </th>
-                    </tr>
-                }
-            </tbody>
-        </table>
-        <p><a asp-page="./Create" class="alert-link alert-success">Create</a></p>
-    </form>
+    </tbody>
+</table>
+<p><a asp-page="./Create" class="alert-link alert-success">Create</a></p>
