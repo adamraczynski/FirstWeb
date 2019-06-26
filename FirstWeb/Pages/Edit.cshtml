@@ -7,7 +7,15 @@
 <form method="post">
     <div asp-validation-summary="All"/>
     <input asp-for="Customer.Id" type="hidden"/>
-        <input asp-for="Customer.Name"/>
-    <button type="submit">Save</button>
+    <div class="form-group">
+        <label asp-for="Customer.Name"></label>
+        <input asp-for="Customer.Name" class="form-control"/>
+    </div>
+    <div class="form-group">
+        <label asp-for="Customer.State"></label>
+        <select class="form-control" asp-for="Customer.State" asp-items="Model.States">
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
 </form>
 

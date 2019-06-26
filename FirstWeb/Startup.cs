@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using FirstWeb.Core;
+using FirstWeb.Core.Domain;
 
 namespace FirstWeb
 {
@@ -64,11 +65,10 @@ namespace FirstWeb
 
         private void SeedDataInto(AppDb dbContext)
         {
-            dbContext.Customers.Add(new Customer { Name = "Adam Obadam" });
-            dbContext.Customers.Add(new Customer { Name = "Aga Powaga" });
-            dbContext.Customers.Add(new Customer { Name = "Stachu Brachu" });
+            dbContext.Customers.Add(new Customer { Name = "Adam Obadam", State = CustomerState.Fine });
+            dbContext.Customers.Add(new Customer { Name = "Aga Powaga", State = CustomerState.Furious });
+            dbContext.Customers.Add(new Customer { Name = "Stachu Brachu", State = CustomerState.Hungry });
             dbContext.SaveChanges();
-
         }
     }
 }

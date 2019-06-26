@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FirstWeb.Core;
+using FirstWeb.Core.Domain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace FirstWeb.Pages
@@ -12,14 +14,21 @@ namespace FirstWeb.Pages
     public class EditModel : PageModel
     {
         private readonly AppDb _db;
+        private readonly IHtmlHelper _htmlHelper;
+
         [BindProperty]
         public Customer Customer { get; set; }
-        public EditModel(AppDb db) => _db = db;
+        public IEnumerable<SelectListItem> States { get; set; }
+        public EditModel(AppDb db, IHtmlHelper htmlHelper)
+        {
+            _db = db;
+            _htmlHelper = htmlHelper;
+        }
         public async Task<IActionResult> OnGetAsync(int id)
         {
+            States = _htmlHelper.GetEnumSelectList<CustomerState>();
             Customer = await _db.Customers.FindAsync(id);
-            if (Customer == null) RedirectToPage("Customers");
-            return Page();
+            return Customer is null ? (IActionResult)RedirectToPage("Customers") : Page();
         }
 
         public async Task<IActionResult> OnPostAsync()

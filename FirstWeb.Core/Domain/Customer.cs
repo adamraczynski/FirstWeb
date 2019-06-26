@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using FirstWeb.Core.Domain;
+using System.ComponentModel.DataAnnotations;
 
 namespace FirstWeb.Core
 {
@@ -8,5 +9,6 @@ namespace FirstWeb.Core
 
         [Required, StringLength(30)]
         public string Name { get; set; }
+        public CustomerState State { get; set; }
     }
 }

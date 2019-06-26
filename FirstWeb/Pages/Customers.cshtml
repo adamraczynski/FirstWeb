@@ -23,6 +23,7 @@
         </div>
     </div>
 </form>
+<form method="post">
 <table class="table">
     <thead>
         <tr>
@@ -37,6 +38,7 @@
             <tr>
                 <th>@Customer.Id</th>
                 <th>@Customer.Name</th>
+                <th>@Customer.State</th>
                 <th>
                     <a asp-page="./Edit" asp-route-Id="@Customer.Id">Edit</a>
                     <button asp-page-handler="Delete" asp-route-id="@Customer.Id" class="btn btn-xs btn-danger">Delete</button>
@@ -45,4 +47,5 @@
         }
     </tbody>
 </table>
+    </form>
 <p><a asp-page="./Create" class="alert-link alert-success">Create</a></p>
